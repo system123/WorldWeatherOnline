@@ -45,7 +45,7 @@ def extract_monthly_data(data):
         df = pd.concat([this_df.reset_index(drop=True), astr_df], axis=1)
         # concat selected astonomy columns with hourly data
         df = pd.concat([df, hourly_df], axis=1)
-        df = df.fillna(method="ffill")
+        df = df.ffill()
         # make date_time columm to proper format
         # fill leading zero for hours to 4 digits (0000-2400 hr)
         df["time"] = df["time"].apply(lambda x: x.zfill(4))
